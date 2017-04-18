@@ -37,15 +37,15 @@
     </ul>
 </menu>
 <section class="not-full">
-    <form id="form_add_pet">
+    <form id="form_edit_pet">
         <div class="underline">
-            <h2>Cadastro de Animais</h2>
+            <h2>Editar Informações de Animais</h2>
         </div>
         <div class="photo_uploader">
             <input type="button" value="Upload">
         </div>
         <div style="display: inline-block; margin: 8px">
-            <label>Nome do Animal:</label> <input type="text" name="name" size="30"><br>
+            <label>Nome do Animal:</label> nome_do_animal<br>
             <label>Espécie:</label> <select>
             <option value="" selected>Escolha uma espécie</option>
             <option value="Mr">Gato</option>
@@ -54,9 +54,17 @@
             <label>Nascimento:</label> <input type="date" name="name" size="10">
         </div>
         <br>
-        <input type="submit" value="Cadastrar">
-    </form>
-    </form>
+        <input type="submit" value="Salvar">
+        <input type="button" class="alert" value="Excluir">
+    </form><br>
+    <div id="animal_services">
+        <h3>Serviços Agendados</h3>
+        <ul>
+            <li><span style="font-weight: bold">Serviço 1</span> (12/12/2017 - 13:00) - R$ 80,00 <button class="alert">Desmarcar</button></li>
+            <li><span style="font-weight: bold">Serviço 2</span> (12/12/2017 - 17:00) - R$ 50,00 <button class="alert">Desmarcar</button></li>
+            <li><span style="font-weight: bold">Serviço 3</span> (18/12/2017 - 13:00) - R$ 130,00 <button class="alert">Desmarcar</button></li>
+        </ul>
+    </div>
 </section>
 <div class="right_board spaced">
     <h1>Meus Animais</h1>

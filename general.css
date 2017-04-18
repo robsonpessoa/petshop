@@ -16,7 +16,7 @@ select {
     font-family: 'Raleway', sans-serif;
 }
 
-input[type="submit"] {
+input[type="submit"], input[type="button"], button {
     background: #38618C;
     border: none;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
@@ -26,9 +26,10 @@ input[type="submit"] {
     line-height: 27px;
     min-width: 54px;
     padding: 0 8px;
+    margin: 4px;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, input[type="button"]:hover, button:hover {
     cursor: pointer;
 }
 
@@ -145,9 +146,14 @@ label {
 .photo_uploader input {
     vertical-align: bottom;
     background-color: #BBC2E2;
+    box-shadow: none;
     border: 0px;
     width: 100%;
-    padding: 4px;
+    padding: 4px 4px 4px 4px;
+    margin: 0px;
+    float: none;
+    border-radius: 0px;
+    float: none !important;
 }
 
 .photo_uploader input:hover {
@@ -159,8 +165,15 @@ label {
 #form_add_pet {
     vertical-align: middle;
     width: 100%;
-    height: 220px;
+    height: auto;
     float: left;
+}
+#form_edit_pet {
+    vertical-align: middle;
+    width: 100%;
+    height: auto;
+    float: left;
+    border-bottom: solid 1px #999999;
 }
 
 #form_card {
@@ -235,7 +248,7 @@ label {
     margin-bottom: 8px;
 }
 
-form input[type="submit"] {
+form input[type="submit"], form input[type="button"]  {
     float: right;
 }
 
@@ -393,4 +406,21 @@ form input[type="submit"] {
 
 .spaced {
     padding: 8px 16px 8px 16px;
+}
+
+#animal_services {
+    border-bottom: solid 1px #999999;
+    vertical-align: middle;
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-top: 12px;
+}
+
+#animal_services ul li {
+    list-style: none;
+}
+
+input.alert, button.alert {
+    background-color: #FF5964;
 }
