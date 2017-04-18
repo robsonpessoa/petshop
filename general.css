@@ -12,12 +12,33 @@ input {
     font-family: 'Raleway', sans-serif;
 }
 
+select {
+    font-family: 'Raleway', sans-serif;
+}
+
+input[type="submit"] {
+    background: #38618C;
+    border: none;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+    color: #fdfdfd;
+    border-radius: 2px;
+    height: 27px;
+    line-height: 27px;
+    min-width: 54px;
+    padding: 0 8px;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+}
+
 ul {
     padding-left: 10px;
 }
 
 header {
-    background-color: #ffffff;
+    background-color: #38618C;
+    color: #FDFDFD;
     display: block;
     height: 64px;
     line-height: 64px;
@@ -25,28 +46,37 @@ header {
     width: calc(100% - 16px);
     padding-left: 16px;
     vertical-align: middle;
-    border-bottom: dashed 1px #000000;
 }
 
 menu {
-    background-color: #ffffff;
+    background-color: #fdfdfd;
     float: left;
     display: block;
-    padding: 8px 8px 8px 16px;
     margin: 0px 8px 0px 0px;
-    width: 200px;
-    border: dashed 1px #000000;
+    width: calc(15% + 24px);
     height: calc(100% - 88px);
+    padding: 0px;
+}
+
+menu ul {
+    list-style-type: none;
+    padding: 8px 0px 8px 24px;
 }
 
 section {
-    background-color: #ffffff;
+    background-color: #fdfdfd;
     display: inline-block;
-    padding: 16px;
-    border: dashed 1px #000000;
-    margin: 16px;
-    width: calc(100% - 304px);
-    height: calc(100% - 136px);
+    padding: 8px;
+    width: calc(80% - 16px);
+    height: auto;
+}
+
+section.not-full {
+    background-color: #fdfdfd;
+    display: inline-block;
+    padding: 8px;
+    width: calc(60% - 16px);
+    height: auto;
 }
 
 section h1 {
@@ -67,57 +97,59 @@ label {
     line-height: 120px;
     background-color: #fdfdfd;
     text-align: center;
-    border: solid 1px #0b0b0b;
+    border: solid 1px #999999;
     display: inline-block;
     vertical-align: middle;
 }
 
 .photo_uploader input {
     vertical-align: bottom;
-    background-color: transparent;
+    background-color: #BBC2E2;
     border: 0px;
     width: 100%;
-    margin: 4px;
+    padding: 4px;
 }
 
 .photo_uploader input:hover {
-    color: darkred;
+    color: #fdfdfd;
+    background-color: #38618C;
+    cursor: pointer;
 }
 
 #form_add_pet {
-    border: solid 1px #0b0b0b;
     vertical-align: middle;
-    width: calc(100% - 304px);
+    width: 100%;
     height: 220px;
-    padding: 12px;
     float: left;
 }
 
 #form_card {
-    border: solid 1px #0b0b0b;
+    border-bottom: solid 1px #999999;
     vertical-align: middle;
-    width: calc(100% - 304px);
-    height: 220px;
-    padding: 12px;
+    width: 100%;
+    height: 304px;
     float: left;
 }
 
 #cards {
-    border: solid 1px #0b0b0b;
+    border-bottom: solid 1px #999999;
     vertical-align: middle;
-    width: calc(100% - 304px);
+    width: 100%;
     height: 208px;
-    padding: 12px;
     float: left;
     margin-top: 12px;
 }
 
 .right_board {
-    border: solid 1px #0b0b0b;
     float: right;
-    height: 96%;
-    width: 236px;
-    padding: 8px;
+    height: 88%;
+    width: calc(20% - 32px);
+    padding: 8px 0px 8px 0px;
+    background-color: #f1f1f1;
+}
+
+.right_board ul{
+    list-style-type: none;
 }
 
 .card {
@@ -127,17 +159,15 @@ label {
     background-color: #fdfdfd;
     text-align: center;
     margin-right: 16px;
-    border: solid 1px #0b0b0b;
+    border: solid 1px #999999;
     display: inline-block;
     vertical-align: middle;
 }
 
 #car_items {
-    border: solid 1px #0b0b0b;
     vertical-align: middle;
-    width: calc(100% - 304px);
+    width: 100%;
     height: 96%;
-    padding: 12px;
     float: left;
     margin-top: 0px;
 }
@@ -150,7 +180,168 @@ label {
     text-align: left;
     margin-top: 12px;
     padding: 8px;
+    border-bottom: solid 1px #999999;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.underline {
+    border-bottom: solid 1px #999999;
+    margin-bottom: 8px;
+}
+
+form input[type="submit"] {
+    float: right;
+}
+
+#prod_items {
+    vertical-align: middle;
+    float: left;
+}
+
+#prod_items ul{
+    margin:0;
+    padding:0;
+    float:left;
+}
+
+#prod_items ul li{
+    margin: 8px;
+    padding:0;
+    list-style: none;
+    float:left;
+}
+
+.product {
+    height: 124px;
+    width: 300px;
+    line-height: 120px;
+    background-color: #fdfdfd;
+    text-align: center;
+    margin-top: 20px;
+    padding: 8px;
     border: solid 1px #0b0b0b;
     display: inline-block;
     vertical-align: top;
+}
+
+.photo_uploader_product {
+    height: 120px;
+    width: 100px;
+    line-height: 120px;
+    background-color: #fdfdfd;
+    text-align: center;
+    border: solid 1px #0b0b0b;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#prod-browser{
+    height: auto;
+
+    background-color: #fdfdfd;
+    float:left;
+    margin: 0px 5px 0px 5px;
+    width: calc(50% - 10px);
+
+}
+
+#shop-cart{
+    border: solid 1px #000;
+    height: 400px;
+    overflow-y: auto;
+    margin: 0px 10px 0px 5px;
+    width: calc(15% - 17px);
+    float:left;
+}
+
+#shop-cart ul{
+    width:100%;
+    margin:0;
+    padding:0;
+    float:left;
+}
+
+#shop-cart ul li{
+    height: 50px;
+    width: calc(100% - 26px);
+    line-height: 0px;
+    background-color: #fdfdfd;
+    text-align: left;
+    margin: 12px 5px 0 5px;
+    padding: 8px;
+
+    display: block;
+    float: left;
+    vertical-align: top;
+    list-style: none;
+}
+
+.car_item_adjusted {
+    height: 50px;
+    width: 80px;
+    line-height: 0px;
+    background-color: #fdfdfd;
+    text-align: left;
+    margin-top: 12px;
+    padding: 8px;
+    border: solid 1px #0b0b0b;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.photo_uploader_adjusted {
+    height: 30px;
+    width: 30px;
+    line-height: 120px;
+    background-color: #fdfdfd;
+    text-align: center;
+    border: solid 1px #0b0b0b;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.right_board_adjusted {
+    background-color: #FFE74C;
+    width: calc(100% - 16px);
+    padding: 1px 8px 4px 8px;
+}
+
+#pet-browser{
+    width: calc(100% - 2px);
+    height: auto;
+    float: left;
+    margin-top: 10px;
+    background-color: #BBC2E2;
+}
+
+#pet-browser h3{
+    text-align: center;
+}
+
+#pet-browser p{
+    float: left;
+    width: 30%;
+    height: auto;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    margin-left: 5px;
+}
+
+#pet-browser ul li{
+    list-style: none;
+}
+
+.photo_uploader_pet_browser {
+    height: 60px;
+    width:  60px;
+    margin-left: 10px;
+    background-color: #fdfdfd;
+    text-align: center;
+    border: solid 1px #0b0b0b;
+    float: left;
+    display: block;
+    vertical-align: middle;
+    margin-bottom: 5px;
 }
