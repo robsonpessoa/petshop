@@ -19,7 +19,7 @@ select {
 input[type="submit"] {
     background: #38618C;
     border: none;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
     color: #fdfdfd;
     border-radius: 2px;
     height: 27px;
@@ -46,6 +46,45 @@ header {
     width: calc(100% - 16px);
     padding-left: 16px;
     vertical-align: middle;
+}
+
+.user_logged {
+    height: 64px;
+    line-height: 64px;
+    float: right;
+    display: inline-block;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.user_image {
+    background-image: url('user.png');
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size:contain;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    float: right;
+    vertical-align: middle;
+    margin: 14px 8px 8px 12px;
+}
+
+.sign_in {
+    height: 64px;
+    line-height: 64px;
+    float: right;
+    display: inline-block;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.sign_in input[type="submit"] {
+    vertical-align: middle;
+    float: right;
+    margin: 16px 8px 8px 8px;
+    background-color: #FFE74C;
+    color: #0b0b0b;
 }
 
 menu {
@@ -99,7 +138,8 @@ label {
     text-align: center;
     border: solid 1px #999999;
     display: inline-block;
-    vertical-align: middle;
+    margin: 4px;
+    float: left;
 }
 
 .photo_uploader input {
@@ -148,8 +188,14 @@ label {
     background-color: #f1f1f1;
 }
 
-.right_board ul{
+.right_board ul {
     list-style-type: none;
+}
+
+.right_board ul li {
+    margin: 8px 0px 8px 0px;
+    padding: 0;
+    list-style: none;
 }
 
 .card {
@@ -178,11 +224,10 @@ label {
     line-height: 120px;
     background-color: #fdfdfd;
     text-align: left;
-    margin-top: 12px;
     padding: 8px;
     border-bottom: solid 1px #999999;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 .underline {
@@ -199,17 +244,17 @@ form input[type="submit"] {
     float: left;
 }
 
-#prod_items ul{
-    margin:0;
-    padding:0;
-    float:left;
+#prod_items ul {
+    margin: 0;
+    padding: 0;
+    float: left;
 }
 
-#prod_items ul li{
+#prod_items ul li {
     margin: 8px;
-    padding:0;
+    padding: 0;
     list-style: none;
-    float:left;
+    float: left;
 }
 
 .product {
@@ -236,33 +281,33 @@ form input[type="submit"] {
     vertical-align: middle;
 }
 
-#prod-browser{
+#prod-browser {
     height: auto;
 
     background-color: #fdfdfd;
-    float:left;
+    float: left;
     margin: 0px 5px 0px 5px;
     width: calc(50% - 10px);
 
 }
 
-#shop-cart{
+#shop-cart {
     border: solid 1px #000;
     height: 400px;
     overflow-y: auto;
     margin: 0px 10px 0px 5px;
     width: calc(15% - 17px);
-    float:left;
+    float: left;
 }
 
-#shop-cart ul{
-    width:100%;
-    margin:0;
-    padding:0;
-    float:left;
+#shop-cart ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    float: left;
 }
 
-#shop-cart ul li{
+#shop-cart ul li {
     height: 50px;
     width: calc(100% - 26px);
     line-height: 0px;
@@ -307,7 +352,7 @@ form input[type="submit"] {
     padding: 1px 8px 4px 8px;
 }
 
-#pet-browser{
+#pet-browser {
     width: calc(100% - 2px);
     height: auto;
     float: left;
@@ -315,11 +360,11 @@ form input[type="submit"] {
     background-color: #BBC2E2;
 }
 
-#pet-browser h3{
+#pet-browser h3 {
     text-align: center;
 }
 
-#pet-browser p{
+#pet-browser p {
     float: left;
     width: 30%;
     height: auto;
@@ -329,13 +374,13 @@ form input[type="submit"] {
     margin-left: 5px;
 }
 
-#pet-browser ul li{
+#pet-browser ul li {
     list-style: none;
 }
 
 .photo_uploader_pet_browser {
     height: 60px;
-    width:  60px;
+    width: 60px;
     margin-left: 10px;
     background-color: #fdfdfd;
     text-align: center;
@@ -344,4 +389,8 @@ form input[type="submit"] {
     display: block;
     vertical-align: middle;
     margin-bottom: 5px;
+}
+
+.spaced {
+    padding: 8px 16px 8px 16px;
 }
