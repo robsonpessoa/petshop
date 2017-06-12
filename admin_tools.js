@@ -8,9 +8,20 @@ $(document).ready(function(){
 	$('menu').on('click','#edit_button_menu', function(){
 		console.log('you clicked me');
 		if($('.edit_button_catalogue_items').length <= 0){
-		// Button does not exists
-			var $input = $('<input class="edit_button_catalogue_items" type="button" value="+-" />');
+		// Button does not exist
+			var $input = $('<input class="edit_button_menu_items" type="button" value="+-" />');
 			$input.appendTo($("menu ul li"));
+		}
+		
+		
+	});
+	
+	$('#prod_items').on('click','#edit_button_catalogue', function(){
+		console.log('you clicked me');
+		if($('.edit_button_catalogue_items').length <= 0){
+		// Button does not exist
+			var $input = $('<input class="edit_button_catalogue_items" type="button" value="+-" />');
+			$input.appendTo($("#prod_items ul li"));
 		}
 		
 		
@@ -25,7 +36,7 @@ $(document).ready(function(){
 	
 	$("menu").mouseleave(function(){
 		$("#edit_button_menu").remove();
-		$(".edit_button_catalogue_items").remove();
+		$(".edit_button_menu_items").remove();
 
 	});
 	
@@ -37,6 +48,7 @@ $(document).ready(function(){
 	
 	$("#prod_items").mouseleave(function(){
 		$("#edit_button_catalogue").remove();
+		$(".edit_button_catalogue_items").remove();
 
 	});
 	
