@@ -57,4 +57,25 @@ class Mock {
 	static dogRaces() {
 		return ["Nenhuma", "Pitbull", "Poodle"];
 	}
+	
+	static users(filter) {
+		var admin = new User("admin","admin@petshop.com","ADMIN");
+
+		
+		var user1 = new User("John Doe","john@doe.com","USER");
+		
+		var user2 = new User("Jane Smith","jane@smith.com","USER");
+		
+		var list = [admin, user1, user2]
+		
+		if (!filter)
+	    	return list;
+	    else {
+	    	var result = [];
+	    	for (var i = 0; i < list.length; ++i)
+	    		if (list[i].email == filter)
+	    			return list[i];
+	    }
+		
+	}
 }

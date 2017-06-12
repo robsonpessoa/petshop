@@ -1,0 +1,36 @@
+
+
+<div id="prod_items">
+    <h3 id="items_category"></h3>
+    <ul id="items">
+    </ul>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if (session.productCategoryFilter == undefined)
+                $('#items_category').text("Todos");
+            else
+                $('#items_category').text(session.productCategoryFilter);
+
+            var products = Mock.products(session.productCategoryFilter);
+
+            for (var i = 0; i < products.length; ++i) {
+                var element = document.createElement("li");
+
+                var name = document.createElement("h2");
+                var photo = document.createElement("div");
+                photo.classList.add('photo_uploader');
+                var price = document.createElement("h3");
+
+                name.appendChild(document.createTextNode(products[i].name));
+                price.appendChild(document.createTextNode("R$ " + products[i].price));
+
+                element.appendChild(name);
+                element.appendChild(photo);
+                element.appendChild(price);
+
+                $("#items").append(element);
+            }
+        });
+    </script>
+</div>

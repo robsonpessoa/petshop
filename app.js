@@ -1,17 +1,33 @@
 var session = new Session();
 
 var login = function() {
-    var user = new User("Usuário Mock");
-    user.email = "user@user.com";
+    var user = Mock.users($("#user_input").val());
+    if(!user){
+		console.log("Login error");
+		alert("LOGIN UNSUCCESSFUL");
+	}else{
+		
     var cart = new Cart();
-    session.login(user, cart);
-
-    $("#title_menu").load("signed_menu.html");
+		session.login(user, cart);
+		if(user.getRole() == "USER"){
+			$("#title_menu").load("signed_menu.html");
         
-    var div = document.createElement("div");
-    div.id = "pet-browser";
-    $('#main_menu').append(div);
-    $('#pet-browser').load("pet_browser.html");
+			var div = document.createElement("div");
+			div.id = "pet-browser";
+			$('#main_menu').append(div);
+			$('#pet-browser').load("pet_browser.html");
+			
+		}else if(user.getRole() == "ADMIN"){
+			alert("ADMIN LOGIN SUCCESSFUL");
+			$("#title_menu").load("signed_menu.html");
+			var div = document.createElement("div");
+			div.id = "admin_prod_browser";
+			$('#pageloader').empty();
+			$('#pageloader').append(div);
+			$(div).load("admin_main.html");
+		}
+		
+	}
 }
 
 var refresh = function() {

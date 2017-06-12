@@ -126,9 +126,11 @@ class Cart {
 }
 
 class User {
-    constructor(name) {
+    constructor(name,email,role) {
         this._name = name;
+		this._email = email;
         this._pets = [];
+		this._role = role;
     }
 
     get name() {
@@ -186,6 +188,14 @@ class User {
     addPet(pet) {
         this._pets.push(pet);
     }
+	
+	getRole(){
+		return this._role;
+	}
+	
+	setRole(role){ //ADMIN USER OR UNDEFINED
+		this._role = role;
+	}
 }
 
 class Session {
