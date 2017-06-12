@@ -18,8 +18,18 @@ var refresh = function() {
     $('#pet-browser').load("pet_browser.html");
 }
 
-var loadPage = function(page) {
-    $("#pageloader").load(page);
+var loadPage = function(page, element) {
+    console.log(page);
+    if (!element)
+        $("#pageloader").load(page);
+    else $(element).load(page);
+}
+
+var authorizedLoadPage = function(page, element) {
+    if (!session.user) {
+        session.returnPage = page;
+        loadPage("signin.html", element);
+    } else loadPage(page, element);
 }
 
 var updatePetBox = function() {
@@ -54,7 +64,10 @@ var createOption = function(name, value) {
 
 $(document).ready( function() {
     // Configure the title menu when logged in
-    $("#title_menu").on("click", login);
+    $("#button_login").on("click", login);
+    $("#btn_signup").on("click", function() {
+        loadPage("signup.html");
+    })
 
     // Configure the main menu
     $("#menu_pb").on("click", function() {
@@ -65,5 +78,12 @@ $(document).ready( function() {
         session.productCategoryFilter = e.target.firstChild.data;
         loadPage("product_browser.html");
     })
+    // TODO create page of services presentation
     $("#menu_bs").on("click", function () {loadPage("book_service.html")});
+    $("#menu_services li").on("click", function(e) {
+        session.selectedService = e.target.firstChild.data;
+        loadPage("service.html");
+    });
+
+    loadPage("product_browser.html");
 });

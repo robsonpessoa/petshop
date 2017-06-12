@@ -1,0 +1,14 @@
+<section>    
+    <div class="underline">
+        <h2>Serviço - <span></span></h2>
+    </div>
+    <div id="subpageloader"></div>
+
+
+    <script type="text/javascript">
+        if (session.user)
+            loadPage("book_service.html", "#subpageloader");
+        else loadPage("book_service_deny.html", "#subpageloader");
+        $(".underline span").text(session.selectedService);
+    </script>
+</section>

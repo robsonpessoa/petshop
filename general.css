@@ -101,6 +101,14 @@ header {
     color: #0b0b0b;
 }
 
+#btn_signup {
+    float: right;
+    display: inline-block;
+    font-size: 12px;
+    vertical-align: middle;
+    margin: 16px 8px 8px 8px;
+}
+
 menu {
     background-color: #fefefe;
     float: left;

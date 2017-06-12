@@ -200,9 +200,17 @@ class Session {
         this._productCategoryFilter = value;
     }
 
+    get selectedService() {
+        return this._service;
+    }
+
+    set selectedService(value) {
+        this._service = value;
+    }
+
     login(user, cart) {
         this.user = user;
         this.cart = cart;
-        this.selectedPet = 0;   
+        this.selectedPet = 0;
     }
 }
