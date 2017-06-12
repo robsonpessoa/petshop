@@ -49,7 +49,7 @@ header {
     vertical-align: middle;
 }
 
-.user_logged {
+#user_logged {
     height: 64px;
     line-height: 64px;
     float: right;

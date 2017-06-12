@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="general.css">
     <script src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
 <header id="title_menu">
@@ -39,23 +40,5 @@
     </ul>
 </menu>
 <section id="pageloader"></section>
-<script type="text/javascript">
-        $(document).ready( function() {
-            $("#title_menu").on("click", function() {
-                $("#title_menu").load("signed_menu.html");
-                
-                var div = document.createElement("div");
-                div.id = "pet-browser";
-                $('#main_menu').append(div);
-                $('#pet-browser').load("pet_browser.html");
-            });
-            $("#menu_pb").on("click", function() {
-                $("#pageloader").load("product_browser.html");
-            });
-            $("#menu_bs").on("click", function() {
-                $("#pageloader").load("book_service.html");
-            });
-});
-    </script>
 </body>
 </html>
