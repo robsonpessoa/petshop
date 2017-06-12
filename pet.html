@@ -1,0 +1,17 @@
+<div>
+	<h3 id="pet_name">ANIMAL</h3>
+	<div class="photo_uploader_pet_browser"></div>
+	<p>Espécie</p><span id="pet_specie"></span><br />
+	<p>Raça</p><span id="pet_race"></span><br />
+	<ul>
+		<li>COMPROMISSO 1</li>
+		<li>COMPROMISSO 1</li>
+		<li>COMPROMISSO 1</li>
+	</ul>
+	<script type="text/javascript">
+		var pet = session.user.pets[session.selectedPet];
+		$("#pet_name").text(pet.name);
+		$("#pet_specie").text(pet.specie);
+		$("#pet_race").text(pet.race);
+	</script>
+</div>

@@ -58,7 +58,7 @@ header {
     vertical-align: middle;
 }
 
-.user_image {
+#user_image {
     background-image: url('user.png');
     background-repeat: no-repeat;
     background-position: 50%;
@@ -102,7 +102,7 @@ header {
 }
 
 menu {
-    background-color: #fdfdfd;
+    background-color: #fefefe;
     float: left;
     display: block;
     margin: 0px 8px 0px 0px;
@@ -135,7 +135,7 @@ menu button:hover {
 }
 
 section {
-    background-color: #fdfdfd;
+    background-color: #fcfcfc;
     display: inline-block;
     padding: 8px;
     width: calc(80% - 16px);
@@ -143,7 +143,7 @@ section {
 }
 
 #loader {
-    background-color: #fdfdfd;
+    background-color: #fcfcfc;
     display: inline-block;
     padding: 8px;
     width: calc(100%);
@@ -151,7 +151,7 @@ section {
 }
 
 section.not-full {
-    background-color: #fdfdfd;
+    background-color: #fcfcfc;
     display: inline-block;
     padding: 8px;
     width: calc(60% - 16px);
@@ -324,10 +324,11 @@ form input[type="submit"], form input[type="button"]  {
 }
 
 #prod_items ul li {
-    margin: 8px;
+    margin: 24px;
     padding: 0;
     list-style: none;
     float: left;
+    max-width: 100px;
 }
 
 .product {
@@ -423,6 +424,11 @@ form input[type="submit"], form input[type="button"]  {
     background-color: #FFE74C;
     width: calc(100% - 16px);
     padding: 1px 8px 4px 8px;
+}
+
+#pets {
+    padding: 8px;
+    background-color: #f5ffc6;
 }
 
 #pet-browser {

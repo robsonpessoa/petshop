@@ -1,6 +1,25 @@
-<div>PetShop
-    <div id="user_logged">
-    	<div id="user_cart" class="user_cart"></div>
-        <span></span>
-        <div class="user_image"></div>
-    </div>
+<div>
+PetShop
+	<div id="user_logged">
+		<div id="user_cart" class="user_cart"></div>
+	    <span></span>
+	    <div id="user_image"></div>
+	</div>
+	<script type="text/javascript">
+		$('#user_cart').on("click", function () {
+            if ($('#float_menu').length == 0) {
+                var ndiv = document.createElement("div");
+                ndiv.id = "float_menu";
+                $('body').append(ndiv);
+                $('#float_menu').load("cart.html");
+            }
+            else $('#float_menu').remove();
+        });
+
+		$('#user_image').on("click", function() {
+			loadPage("edit_info.html");
+		});
+
+        $('#user_logged span').text(session.user.name);
+	</script>
+</div>

@@ -1,11 +1,9 @@
 <div>
-<h3>ANIMAL</h3>
-<div class="photo_uploader_pet_browser"></div>
-<p>RAÇA</p><br />
-<p>IDADE</p><br />
-<ul>
-    <li>COMPROMISSO 1</li>
-    <li>COMPROMISSO 1</li>
-    <li>COMPROMISSO 1</li>
-</ul>
+	<div id="pets"></div>
+	<script type="text/javascript">
+		if (session.user.pets.length == 0)
+			$("#pets").load("no_pet.html");
+		else
+			$("#pets").load("pet.html");
+	</script>
 </div>

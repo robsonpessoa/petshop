@@ -1,84 +1,94 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>PetShop</title>
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="general.css">
-</head>
-<body>
-<header>
-    PetShop
-    <div class="user_logged">
-        user_name
-        <div class="user_image"></div>
+<div>
+    <section class="not-full">
+        <form id="form_add_pet">
+            <div class="underline">
+                <h2>Cadastro de Animais</h2>
+            </div>
+            <div class="photo_uploader">
+                <input type="button" value="Upload">
+            </div>
+            <div style="display: inline-block; margin: 8px">
+                <label>Nome do Animal:</label> <input type="text" name="name" size="30"><br>
+                <label>Espécie:</label> <select name="specie">
+                <option value="" selected>Escolha uma espécie</option>
+                <option value="Gato">Gato</option>
+                <option value="Cachorro">Cachorro</option>
+            </select><br>
+                <label>Raça:</label> <select name="race">
+                <option value="" selected>Escolha uma raça</option>
+            </select><br>
+                <label>Nascimento:</label> <input type="date" name="birthday" size="10">
+            </div>
+            <br>
+            <input type="button" id="button_add_pet" value="Cadastrar">
+        </form>
+        </form>
+    </section>
+    <div class="right_board spaced">
+        <h1>Meus Animais</h1>
+        <ul id="my_animals"></ul>
+        Total: <span id="my_animals_size"></span>
     </div>
-</header>
-<menu>
-    <ul>
-        <li>
-            <h4>Hierarquia Nível 1</h4>
-            <ul>
-                <li>Hierarquia Nível 2</li>
-                <li>Hierarquia Nível 2</li>
-                <li>Hierarquia Nível 2</li>
-                <li>Hierarquia Nível 2</li>
-            </ul>
-        </li>
-        <li>
-            <h4>Hierarquia Nível 1</h4>
-            <ul>
-                <li>Hierarquia Nível 2</li>
-                <li>Hierarquia Nível 2</li>
-                <li>Hierarquia Nível 2</li>
-                <li>Hierarquia Nível 2</li>
-            </ul>
-        </li>
-    </ul>
-</menu>
-<section class="not-full">
-    <form id="form_add_pet">
-        <div class="underline">
-            <h2>Cadastro de Animais</h2>
-        </div>
-        <div class="photo_uploader">
-            <input type="button" value="Upload">
-        </div>
-        <div style="display: inline-block; margin: 8px">
-            <label>Nome do Animal:</label> <input type="text" name="name" size="30"><br>
-            <label>Espécie:</label> <select>
-            <option value="" selected>Escolha uma espécie</option>
-            <option value="Mr">Gato</option>
-            <option value="Miss">Cachorro</option>
-        </select><br>
-            <label>Nascimento:</label> <input type="date" name="name" size="10">
-        </div>
-        <br>
-        <input type="submit" value="Cadastrar">
-    </form>
-    </form>
-</section>
-<div class="right_board spaced">
-    <h1>Meus Animais</h1>
-    <ul>
-        <li>
-            <div class="photo_uploader_adjusted"></div>
-            Animal 1
-        </li>
-        <li>
-            <div class="photo_uploader_adjusted"></div>
-            Animal 2
-        </li>
-        <li>
-            <div class="photo_uploader_adjusted"></div>
-            Animal 3
-        </li>
-        <li>
-            <div class="photo_uploader_adjusted"></div>
-            Animal 4
-        </li>
-    </ul>
-    Total: 0
+    <script type="text/javascript">
+        var updatePetBox = function() {
+
+            $("#my_animals").children().remove();
+            for (var i=0; i < session.user.pets.length; ++i) {
+                var element = document.createElement("li");
+
+                var photo = document.createElement("div");
+                photo.classList.add("photo_uploader_adjusted");
+                var petName = document.createTextNode(session.user.pets[i].name);
+
+                element.appendChild(photo);
+                element.appendChild(petName);
+
+                $("#my_animals").append(element);
+            }
+        }
+
+        updatePetBox();
+
+        $("#my_animals_size").text("" + session.user.pets.length);
+
+        $("#button_add_pet").on("click", function() {
+            var pet_data = $("#form_add_pet").get(0);
+            var pet = new Pet(pet_data.elements["name"].value,
+                                pet_data.elements["specie"].options[pet_data.elements["specie"].selectedIndex].value,
+                                pet_data.elements["race"].options[pet_data.elements["race"].selectedIndex].value,
+                                pet_data.elements["birthday"].value);
+            session.user.addPet(pet);
+            updatePetBox();
+            refresh();
+        });
+
+        var races = [];
+
+        var createOption = function(name, value) {
+            var element = document.createElement("option");
+            var text = document.createTextNode(name);
+            element.value = value;
+            element.appendChild(text);
+            return element;
+        } 
+
+        $('[name=specie]').on("change", function() {
+            if ($('[name=specie]').val() == "Gato")
+                races = Mock.catRaces();
+            else
+                races = Mock.dogRaces();
+
+            $('[name=race]').children().remove();
+            $('[name=race]').append(createOption("Selecione uma raça", ""));  
+
+            for (var i = 0; i < races.length; ++i) 
+                $('[name=race]').append(createOption(races[i], races[i]));                
+
+            $('[name=race]').prop("disabled", false);
+        });
+
+        if (races.length == 0)
+            $('[name=race]').prop("disabled", true);
+
+    </script>
 </div>
-</body>
-</html>
