@@ -63,6 +63,8 @@ class Mock {
 
 		
 		var user1 = new User("John Doe","john@doe.com","USER");
+
+		user1.addCard(new Card("1234 5678 9012 3456", "John Doe", "12/20", 225));
 		
 		var user2 = new User("Jane Smith","jane@smith.com","USER");
 		

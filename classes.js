@@ -1,3 +1,28 @@
+class Card {
+    constructor(number,owner, expiration, code) {
+        this._id = number;
+        this._owner = owner;
+        this._expiration = expiration;
+        this._code = code;
+    }
+
+    get number() {
+        return this._id;
+    }
+
+    get owner() {
+        return this._owner;
+    }
+
+    get expiration() {
+        return this._expiration;
+    }
+
+    get securityCode() {
+        return this._code;
+    }
+}
+
 class Service {
     constructor(id, name, price, description) {
         this._id = id;
@@ -130,6 +155,7 @@ class User {
         this._name = name;
 		this._email = email;
         this._pets = [];
+        this._cards = []
 		this._role = role;
     }
 
@@ -185,8 +211,20 @@ class User {
         return this._pets;
     }
 
+    get cards() {
+        return this._cards;
+    }
+
+    addCard(card) {
+        this._cards.push(card);
+    }
+
     addPet(pet) {
         this._pets.push(pet);
+    }
+
+    removeCard(card) {
+        // TODO
     }
 	
 	getRole(){

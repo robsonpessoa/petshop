@@ -11,39 +11,10 @@
         <button class="alert finish_button">Finalizar Compra</button>
     </div>
     <script type="text/javascript">
-        $("#cart_items").children().remove();
-        var total = 0;
-        for (var i=0; i < session.cart.items.length; ++i) {
-            var element = document.createElement("li");
-            total += session.cart.items[i].price;
-            element.index = i;
-
-            var photo = document.createElement("div");
-            $(photo).css("float", "left");
-            photo.classList.add("photo_uploader_adjusted");
-
-            var div = document.createElement("div");
-
-            var itemName = document.createTextNode(session.cart.items[i].name);
-            var itemPrice = document.createTextNode("R$ " + session.cart.items[i].price);
-
-            div.appendChild(photo);
-            div.appendChild(itemName);
-            div.appendChild(document.createElement("br"));
-            div.appendChild(itemPrice);
-
-            $(element).on("click", function() {
-                session.selectedItem = element.index;
-            });
-
-            element.appendChild(div);
-
-            $("#cart_items").append(element);
-        }
-
-        $("#total_price").text(total);
+        updateCart();
         $(".finish_button").on("click", function() {
             loadPage("finish_buy.html");
+            toogleModal();
         });
     </script>
 </div>
