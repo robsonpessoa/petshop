@@ -1,49 +1,49 @@
 <div>
     <div class="container">
         <span style="font-size: 12pt">Meu carrinho</span>
-        <ul id="cart_items">
-            <li>
-                <div class="photo_uploader_adjusted"></div>
-                Item 1
-            </li>
-            <li>
-                <div class="photo_uploader_adjusted"></div>
-                Item 2
-            </li>
-            <li>
-                <div class="photo_uploader_adjusted"></div>
-                Item 3
-            </li>
-            <li>
-                <div class="photo_uploader_adjusted"></div>
-                Item 4
-            </li>
-        </ul>
+        <ul id="cart_items"></ul>
     </div>
     <div class="right_board_adjusted">
-        <span style="font-size: 8pt">Total da Compra</span>
-        <h1 class="price">R$ 0,00</h1>
+        <div style="float: left; width: 60%;">
+            <span style="font-size: 8pt">Total da Compra</span>
+            <h1 class="price">R$ <span id="total_price"></span></h1>
+        </div>
+        <button class="alert finish_button">Finalizar Compra</button>
     </div>
     <script type="text/javascript">
         $("#cart_items").children().remove();
+        var total = 0;
         for (var i=0; i < session.cart.items.length; ++i) {
             var element = document.createElement("li");
+            total += session.cart.items[i].price;
             element.index = i;
 
             var photo = document.createElement("div");
+            $(photo).css("float", "left");
             photo.classList.add("photo_uploader_adjusted");
-            var itemName = document.createTextNode(session.cart.items[i].name);
-            var itemPrice = document.createTextNode(session.cart.items[i].price);
 
-            element.appendChild(photo);
-            element.appendChild(itemName);
-            element.appendChild(itemPrice);
+            var div = document.createElement("div");
+
+            var itemName = document.createTextNode(session.cart.items[i].name);
+            var itemPrice = document.createTextNode("R$ " + session.cart.items[i].price);
+
+            div.appendChild(photo);
+            div.appendChild(itemName);
+            div.appendChild(document.createElement("br"));
+            div.appendChild(itemPrice);
 
             $(element).on("click", function() {
                 session.selectedItem = element.index;
             });
 
+            element.appendChild(div);
+
             $("#cart_items").append(element);
         }
+
+        $("#total_price").text(total);
+        $(".finish_button").on("click", function() {
+            loadPage("finish_buy.html");
+        });
     </script>
 </div>

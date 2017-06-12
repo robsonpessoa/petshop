@@ -6,6 +6,8 @@ var login = function() {
 		console.log("Login error");
 		alert("LOGIN UNSUCCESSFUL");
 	}else{
+
+        console.log(user);
 		
     var cart = new Cart();
 		session.login(user, cart);

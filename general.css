@@ -44,7 +44,7 @@ header {
     height: 64px;
     line-height: 64px;
     font-size: 18px;
-    width: calc(100% - 16px);
+    width: calc(100%);
     padding-left: 16px;
     vertical-align: middle;
     z-index: 100;
@@ -275,12 +275,16 @@ label {
     padding: 8px;
 }
 
+.container ul{
+    padding-left: 0px;
+}
+
 #float_menu {
     position: fixed;
     top: 65px;
     right:40px;
     height: auto;
-    width: 200px;
+    width: 320px;
     background-color: #fcfcfc;
     box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.3);
     z-index: 100;
@@ -455,12 +459,15 @@ form input[type="submit"], form input[type="button"]  {
     border: solid 1px #0b0b0b;
     display: inline-block;
     vertical-align: middle;
+    margin-right: 4px;
 }
 
 .right_board_adjusted {
     background-color: #F5F5F5;
-    width: calc(100% - 16px);
+    width: calc(100%);
     padding: 0px 8px 5px 8px;
+    display:flex;
+    align-items:center;
 }
 
 #pets {
@@ -558,4 +565,9 @@ input.alert, button.alert {
     font-size: 16pt;
     height: auto !important;
     padding: 4px 16px 4px 16px;
+}
+
+.finish_button {
+    float: right;
+    height: auto;
 }
