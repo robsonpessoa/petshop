@@ -22,6 +22,36 @@ var loadPage = function(page) {
     $("#pageloader").load(page);
 }
 
+var updatePetBox = function() {
+    $("#my_animals").children().remove();
+    for (var i=0; i < session.user.pets.length; ++i) {
+        var element = document.createElement("li");
+        element.index = i;
+
+        var photo = document.createElement("div");
+        photo.classList.add("photo_uploader_adjusted");
+        var petName = document.createTextNode(session.user.pets[i].name);
+
+        element.appendChild(photo);
+        element.appendChild(petName);
+
+        $(element).on("click", function() {
+            session.selectedPet = element.index;
+            $("#pageloader").load("edit_pet.html");
+        });
+
+        $("#my_animals").append(element);
+    }
+}
+
+var createOption = function(name, value) {
+    var element = document.createElement("option");
+    var text = document.createTextNode(name);
+    element.value = value;
+    element.appendChild(text);
+    return element;
+} 
+
 $(document).ready( function() {
     // Configure the title menu when logged in
     $("#title_menu").on("click", login);

@@ -1,9 +1,64 @@
+class Service {
+    constructor(id, name, price, description) {
+        this._id = id;
+        this._name = name;
+        this._price = price;
+        this._description = description;
+    }
+
+    get id() {
+        return this._id;
+    }
+
+    get name() {
+        return this._name;
+    }
+
+    get price() {
+        return this._price;
+    }
+
+    get description() {
+        return this._description;
+    }
+}
+
+class PetService {
+
+    constructor(date, time, service) {
+        this._date = date;
+        this._time = time;
+        this._service = service;
+    }
+
+    get service() {
+        return this._service;
+    }
+
+    get date() {
+        return this._date;
+    }   
+
+    set date(value) {
+        this_date = value;
+    }
+
+    get time() {
+        return this._time;
+    }
+
+    set time(value) {
+        this._time = time;
+    }
+}
+
 class Pet {
     constructor(name, specie, race, birthday) {
         this._name = name;
         this._specie = specie;
         this._race = race;
         this._birthday = birthday;
+        this._events = []
     }
 
     get name() {
@@ -20,6 +75,14 @@ class Pet {
 
     get birthday() {
         return this._birthday;
+    }
+
+    bookEvent(event) {
+        this.events.push(event);
+    }
+
+    get events() {
+        return this._events;
     }
 }
 

@@ -6,12 +6,8 @@
         <div class="photo_uploader">
         </div>
         <div style="display: inline-block; margin: 8px">
-            <label>Nome do Animal:</label> <select>
+            <label>Nome do Animal:</label> <select name="my_animals">
             <option value="" selected>Escolha um animal</option>
-            <option value="a1">Animal 1</option>
-            <option value="a2">Animal 2</option>
-            <option value="a3">Animal 3</option>
-            <option value="a4">Animal 4</option>
         </select><br>
             <label>Serviço:</label> <select>
             <option value="" selected>Escolha um serviço</option>
@@ -26,4 +22,12 @@
         <br>
         <input type="submit" value="Cadastrar">
     </form>
+
+    <script type="text/javascript">
+        $("[name=my_animals]").children().remove();
+        $('[name=my_animals]').append(createOption("Selecione um animal", ""));
+        for (var i=0; i < session.user.pets.length; ++i)
+            $('[name=my_animals]').append(createOption(session.user.pets[i].name, session.user.pets[i].name));
+        
+    </script>
 </section>

@@ -1,41 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>PetShop</title>
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="general.css">
-</head>
-<body>
-<header>
-    PetShop
-    <div class="user_logged">
-        user_name
-        <div class="user_image"></div>
-    </div>
-</header>
-<menu>
-    <ul>
-        <li>
-            <h4>Hierarquia Nível 1</h4>
-            <ul>
-                <li>Hierarquia Nível 2</li>
-                <li>Hierarquia Nível 2</li>
-                <li>Hierarquia Nível 2</li>
-                <li>Hierarquia Nível 2</li>
-            </ul>
-        </li>
-        <li>
-            <h4>Hierarquia Nível 1</h4>
-            <ul>
-                <li>Hierarquia Nível 2</li>
-                <li>Hierarquia Nível 2</li>
-                <li>Hierarquia Nível 2</li>
-                <li>Hierarquia Nível 2</li>
-            </ul>
-        </li>
-    </ul>
-</menu>
 <section class="not-full">
     <form id="form_edit_pet">
         <div class="underline">
@@ -45,11 +7,14 @@
             <input type="button" value="Upload">
         </div>
         <div style="display: inline-block; margin: 8px">
-            <label>Nome do Animal:</label> nome_do_animal<br>
-            <label>Espécie:</label> <select>
+            <label>Nome do Animal:</label> <span id="pet_name_edit"></span><br>
+            <label>Espécie:</label> <select name="specie">
             <option value="" selected>Escolha uma espécie</option>
-            <option value="Mr">Gato</option>
-            <option value="Miss">Cachorro</option>
+            <option value="Gato">Gato</option>
+            <option value="Cachorro">Cachorro</option>
+        </select><br>
+            <label>Raça:</label> <select name="race">
+            <option value="" selected>Escolha uma raça</option>
         </select><br>
             <label>Nascimento:</label> <input type="date" name="name" size="10">
         </div>
@@ -59,34 +24,71 @@
     </form><br>
     <div id="animal_services">
         <h3>Serviços Agendados</h3>
-        <ul>
-            <li><span style="font-weight: bold">Serviço 1</span> (12/12/2017 - 13:00) - R$ 80,00 <button class="alert">Desmarcar</button></li>
-            <li><span style="font-weight: bold">Serviço 2</span> (12/12/2017 - 17:00) - R$ 50,00 <button class="alert">Desmarcar</button></li>
-            <li><span style="font-weight: bold">Serviço 3</span> (18/12/2017 - 13:00) - R$ 130,00 <button class="alert">Desmarcar</button></li>
-        </ul>
+        <ul id="edit_pet_events"></ul>
     </div>
 </section>
 <div class="right_board spaced">
     <h1>Meus Animais</h1>
-    <ul>
-        <li>
-            <div class="photo_uploader_adjusted"></div>
-            Animal 1
-        </li>
-        <li>
-            <div class="photo_uploader_adjusted"></div>
-            Animal 2
-        </li>
-        <li>
-            <div class="photo_uploader_adjusted"></div>
-            Animal 3
-        </li>
-        <li>
-            <div class="photo_uploader_adjusted"></div>
-            Animal 4
-        </li>
-    </ul>
-    Total: 0
+    <ul id="my_animals"></ul>
+        Total: <span id="my_animals_size"></span>
+
+    <script type="text/javascript">
+        updatePetBox();
+        var pet = session.user.pets[session.selectedPet];
+
+        var races = [];
+
+        $('[name=specie]').on("change", function() {
+            if ($('[name=specie]').val() == "Gato")
+                races = Mock.catRaces();
+            else
+                races = Mock.dogRaces();
+
+            $('[name=race]').children().remove();
+            $('[name=race]').append(createOption("Selecione uma raça", ""));  
+
+            for (var i = 0; i < races.length; ++i) 
+                $('[name=race]').append(createOption(races[i], races[i]));                
+
+            $('[name=race]').prop("disabled", false);
+        });
+
+        $('#pet_name_edit').text(pet.name);
+        $('[name=specie]').val(pet.specie);
+
+        if (races.length == 0)
+            $('[name=race]').prop("disabled", true);
+
+        $('[name=race]').val(pet.race);
+        $('#pet_birthday').val(pet.birthday);
+
+        for (var i = 0; i < pet.events.length; ++i) {
+            var event = pet.events[i];
+
+            var element = document.createElement("li");
+            var serviceName = document.createElement("span");
+            
+            serviceName.style.fontWeight = "bold";
+            serviceName.text(event.service.name);
+            element.appendChild(serviceName)
+                .appendChild(document.createTextNode("(" 
+                    + event.date + " - " + event.time + ")"))
+                .appendChild(document.createTextNode(" - R$ " + event.service.price));
+            element.appendChild(document.createTextNode(event.service.name + " - " + event.date));
+            var button = document.createElement("button");
+            button.classList.add("Alert");
+            button.innerHTML = Desmarcar;
+            element.appendChild(button);
+
+            $("#edit_pet_events").append(element);
+            $(button).on("click", function() {
+                var index = pet.events.indexOf(event);
+                if(index!==-1) {
+                    pet.events.splice(index, 1);
+                }
+                $(element).remove();
+            });
+        }
+    
+    </script>
 </div>
-</body>
-</html>

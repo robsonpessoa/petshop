@@ -30,23 +30,6 @@
         Total: <span id="my_animals_size"></span>
     </div>
     <script type="text/javascript">
-        var updatePetBox = function() {
-
-            $("#my_animals").children().remove();
-            for (var i=0; i < session.user.pets.length; ++i) {
-                var element = document.createElement("li");
-
-                var photo = document.createElement("div");
-                photo.classList.add("photo_uploader_adjusted");
-                var petName = document.createTextNode(session.user.pets[i].name);
-
-                element.appendChild(photo);
-                element.appendChild(petName);
-
-                $("#my_animals").append(element);
-            }
-        }
-
         updatePetBox();
 
         $("#my_animals_size").text("" + session.user.pets.length);

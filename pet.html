@@ -3,15 +3,23 @@
 	<div class="photo_uploader_pet_browser"></div>
 	<p>Espécie</p><span id="pet_specie"></span><br />
 	<p>Raça</p><span id="pet_race"></span><br />
-	<ul>
-		<li>COMPROMISSO 1</li>
-		<li>COMPROMISSO 1</li>
-		<li>COMPROMISSO 1</li>
-	</ul>
+	<ul id="pet_events"></ul>
 	<script type="text/javascript">
-		var pet = session.user.pets[session.selectedPet];
-		$("#pet_name").text(pet.name);
-		$("#pet_specie").text(pet.specie);
-		$("#pet_race").text(pet.race);
+		$(document).ready(function () {
+			var pet = session.user.pets[session.selectedPet];
+			$("#pet_name").text(pet.name);
+			$("#pet_specie").text(pet.specie);
+			$("#pet_race").text(pet.race);
+
+			$("#pets").on("click", function() {
+	            $("#pageloader").load("edit_pet.html");
+	        });
+
+	        for (var i = 0; i < pet.events.length; ++i) {
+	        	var element = document.createElement("li");
+	        	element.appendChild(document.createTextNode(pet.events[i].service.name + " - " + pet.events[i].date));
+	        	$("#pet_events").append(element);
+	        }
+		});
 	</script>
 </div>
