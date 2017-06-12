@@ -19,7 +19,6 @@ var refresh = function() {
 }
 
 var loadPage = function(page, element) {
-    console.log(page);
     if (!element)
         $("#pageloader").load(page);
     else $(element).load(page);
@@ -61,6 +60,20 @@ var createOption = function(name, value) {
     element.appendChild(text);
     return element;
 } 
+
+var toogleModal = function() {
+    if ($("#overlay").length != 0)
+        $("#overlay").remove();
+    else {
+        var overlay = document.createElement("div");
+        overlay.id = "overlay";
+        $(overlay).on("click", function() {
+            toogleModal();
+            $(".modal").remove();
+        });
+        $("body").append(overlay);
+    }
+}
 
 $(document).ready( function() {
     // Configure the title menu when logged in

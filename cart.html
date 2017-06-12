@@ -1,23 +1,49 @@
-<div><ul>
-        <li>
-            <div class="photo_uploader_adjusted"></div>
-            Item 1
-        </li>
-        <li>
-            <div class="photo_uploader_adjusted"></div>
-            Item 2
-        </li>
-        <li>
-            <div class="photo_uploader_adjusted"></div>
-            Item 3
-        </li>
-        <li>
-            <div class="photo_uploader_adjusted"></div>
-            Item 4
-        </li>
-    </ul>
+<div>
+    <div class="container">
+        <span style="font-size: 12pt">Meu carrinho</span>
+        <ul id="cart_items">
+            <li>
+                <div class="photo_uploader_adjusted"></div>
+                Item 1
+            </li>
+            <li>
+                <div class="photo_uploader_adjusted"></div>
+                Item 2
+            </li>
+            <li>
+                <div class="photo_uploader_adjusted"></div>
+                Item 3
+            </li>
+            <li>
+                <div class="photo_uploader_adjusted"></div>
+                Item 4
+            </li>
+        </ul>
+    </div>
     <div class="right_board_adjusted">
-        <h3>Total da Compra</h3>
-        Total: R$ 0,00
+        <span style="font-size: 8pt">Total da Compra</span>
+        <h1 class="price">R$ 0,00</h1>
     </div>
-    </div>
+    <script type="text/javascript">
+        $("#cart_items").children().remove();
+        for (var i=0; i < session.cart.items.length; ++i) {
+            var element = document.createElement("li");
+            element.index = i;
+
+            var photo = document.createElement("div");
+            photo.classList.add("photo_uploader_adjusted");
+            var itemName = document.createTextNode(session.cart.items[i].name);
+            var itemPrice = document.createTextNode(session.cart.items[i].price);
+
+            element.appendChild(photo);
+            element.appendChild(itemName);
+            element.appendChild(itemPrice);
+
+            $(element).on("click", function() {
+                session.selectedItem = element.index;
+            });
+
+            $("#cart_items").append(element);
+        }
+    </script>
+</div>

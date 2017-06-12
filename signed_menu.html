@@ -10,10 +10,12 @@ PetShop
             if ($('#float_menu').length == 0) {
                 var ndiv = document.createElement("div");
                 ndiv.id = "float_menu";
-                $('body').append(ndiv);
-                $('#float_menu').load("cart.html");
+                ndiv.classList.add("modal");
+                $(ndiv).load("cart.html");
+                $('body').append(ndiv);              
             }
             else $('#float_menu').remove();
+            toogleModal();
         });
 
 		$('#user_image').on("click", function() {

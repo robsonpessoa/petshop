@@ -14,6 +14,7 @@
 
             for (var i = 0; i < products.length; ++i) {
                 var element = document.createElement("li");
+                element.product = products[i].id;
 
                 var name = document.createElement("h2");
                 var photo = document.createElement("div");
@@ -26,6 +27,19 @@
                 element.appendChild(name);
                 element.appendChild(photo);
                 element.appendChild(price);
+
+                $(element).on("click", function(e) {
+                    console.log(e);
+                    session.selectedProduct = e.currentTarget.product;
+                    if ($('.modal').length == 0) {
+                        var ndiv = document.createElement("div");
+                        ndiv.classList.add("modal");
+                        $(ndiv).load("product.html");
+                        $('body').append(ndiv);
+                    }
+                    else $('.modal').remove();
+                    toogleModal();
+                });
 
                 $("#items").append(element);
             }
