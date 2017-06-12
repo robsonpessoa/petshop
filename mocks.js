@@ -32,13 +32,22 @@ class Mock {
 	    }
 	}
 
-	static services() {
+	static services(filter) {
 		var service1 = new Service(1, "Banho", 12.10, "O melhor brinquedo para o seu cachorro");
 	    var service2 = new Service(2, "Tosa", 17.50, "O melhor brinquedo para o seu gato");
 	    var service3 = new Service(3, "Veterinário", 32.99, "A melhor coleira para o seu cachorro");
 	    var service4 = new Service(4, "Passeio", 23.79, "A melhor coleira para o seu gato");
 
-	    return [service1, service2, service3, service4];
+	    var list = [service1, service2, service3, service4];
+
+	    if (!filter)
+	    	return list;
+	    else {
+	    	var result = [];
+	    	for (var i = 0; i < list.length; ++i)
+	    		if (list[i].name == filter)
+	    			return list[i];
+	    }
 	}
 
 	static catRaces() {

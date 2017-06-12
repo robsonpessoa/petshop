@@ -1,25 +1,37 @@
 <section>
-    <form id="form_add_pet">
-        <div class="underline">
-            <h3>Agendar</h3>
-        </div>
-        <div class="photo_uploader">
-        </div>
-        <div style="display: inline-block; margin: 8px">
-            <label>Nome do Animal:</label> <select name="my_animals">
-            <option value="" selected>Escolha um animal</option>
-        </select><br>
-            <label>Data:</label> <input type="date" name="name" size="10">
-            <label>Horário:</label> <input type="time" name="name" size="10">
-        </div>
-        <br>
-        <input type="submit" value="Cadastrar">
-    </form>
+    <div class="underline">
+        <h3>Agendar</h3>
+    </div>
+    <div style="display: inline-block; margin: 8px">
+        <label>Nome do Animal:</label> <select name="my_animals">
+        <option value="" selected>Escolha um animal</option>
+    </select><br>
+        <label>Data:</label> <input type="date" name="date" size="10">
+        <label>Horário:</label> <input type="time" name="time" size="10">
+    </div>
+    <br>
+    <input id="button_confirm" type="submit" value="Confirmar">
 
     <script type="text/javascript">
         $("[name=my_animals]").children().remove();
         $('[name=my_animals]').append(createOption("Selecione um animal", ""));
         for (var i=0; i < session.user.pets.length; ++i)
             $('[name=my_animals]').append(createOption(session.user.pets[i].name, session.user.pets[i].name));
+
+        var selectedPed;
+
+        $('[name=my_animals]').on("change", function() {
+            var name = $('[name=my_animals]').val();
+
+            for (var i = 0; i < session.user.pets.length; ++i)
+                if (session.user.pets[i].name == name)
+                    selectedPet = session.user.pets[i];
+        });
+
+        $("#button_confirm").on("click", function() {
+            selectedPet.bookEvent(new PetService($("[name=date]").val(), $("[name=time]").val(), session.selectedService));
+            alert("Agendado com sucesso!");
+            refresh();
+        })
     </script>
 </section>

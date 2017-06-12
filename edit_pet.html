@@ -63,31 +63,20 @@
         $('#pet_birthday').val(pet.birthday);
 
         for (var i = 0; i < pet.events.length; ++i) {
+            console.log(session);
             var event = pet.events[i];
 
             var element = document.createElement("li");
             var serviceName = document.createElement("span");
             
             serviceName.style.fontWeight = "bold";
-            serviceName.text(event.service.name);
-            element.appendChild(serviceName)
-                .appendChild(document.createTextNode("(" 
-                    + event.date + " - " + event.time + ")"))
-                .appendChild(document.createTextNode(" - R$ " + event.service.price));
-            element.appendChild(document.createTextNode(event.service.name + " - " + event.date));
-            var button = document.createElement("button");
-            button.classList.add("Alert");
-            button.innerHTML = Desmarcar;
-            element.appendChild(button);
-
+            $(serviceName).text(event.service.name);
+            element.appendChild(serviceName);
+            element.appendChild(document.createTextNode("(" 
+                    + event.date + " - " + event.time + ")"));
+            element.appendChild(document.createTextNode(" - R$ " + event.service.price));
+            
             $("#edit_pet_events").append(element);
-            $(button).on("click", function() {
-                var index = pet.events.indexOf(event);
-                if(index!==-1) {
-                    pet.events.splice(index, 1);
-                }
-                $(element).remove();
-            });
         }
     
     </script>

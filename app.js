@@ -81,7 +81,7 @@ $(document).ready( function() {
     // TODO create page of services presentation
     $("#menu_bs").on("click", function () {loadPage("book_service.html")});
     $("#menu_services li").on("click", function(e) {
-        session.selectedService = e.target.firstChild.data;
+        session.selectedService = Mock.services(e.target.firstChild.data);
         loadPage("service.html");
     });
 
