@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PetShop</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="general.css">
+    <script src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<header id="title_menu">
+    PetShop
+    <form class="sign_in">
+        <label>Usuário:</label> <input type="text" name="name" size="10">
+        <label>Senha:</label> <input type="password" name="name" size="10">
+        <input type="button" value="Entrar">
+    </form>
+</header>
+<menu id="main_menu">
+    <ul>
+        <li>
+            <button id="menu_pb">Nossos Produtos</button>
+            <ul>
+                <li><button id="menu_pb">Brinquedo</button></li>
+                <li><button id="menu_pb">Coleira</button></li>
+                <li><button id="menu_pb">Ração</button></li>
+                <li><button id="menu_pb">Essenciais</button></li>
+            </ul>
+        </li>
+        <li>
+            <li><button id="menu_bs">Nossos Serviços</button></li>
+            <ul>
+                <li><button id="menu_bs">Banho</button></li>
+                <li><button id="menu_bs">Tosa</button></li>
+                <li><button id="menu_bs">Veterinário</button></li>
+                <li><button id="menu_bs">Passeio</button></li>
+            </ul>
+        </li>
+    </ul>
+</menu>
+<section id="pageloader"></section>
+<script type="text/javascript">
+        $(document).ready( function() {
+            $("#title_menu").on("click", function() {
+                $("#title_menu").load("signed_menu.html");
+                
+                var div = document.createElement("div");
+                div.id = "pet-browser";
+                $('#main_menu').append(div);
+                $('#pet-browser').load("pet_browser.html");
+            });
+            $("#menu_pb").on("click", function() {
+                $("#pageloader").load("product_browser.html");
+            });
+            $("#menu_bs").on("click", function() {
+                $("#pageloader").load("book_service.html");
+            });
+});
+    </script>
+</body>
+</html>

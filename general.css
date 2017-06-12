@@ -71,6 +71,19 @@ header {
     margin: 14px 8px 8px 12px;
 }
 
+.user_cart {
+    background-image: url('cart.png');
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size:contain;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    float: left;
+    vertical-align: middle;
+    margin: 14px 8px 8px 12px;
+}
+
 .sign_in {
     height: 64px;
     line-height: 64px;
@@ -80,7 +93,7 @@ header {
     vertical-align: middle;
 }
 
-.sign_in input[type="submit"] {
+.sign_in input[type="submit"], input[type="button"]  {
     vertical-align: middle;
     float: right;
     margin: 16px 8px 8px 8px;
@@ -94,8 +107,9 @@ menu {
     display: block;
     margin: 0px 8px 0px 0px;
     width: calc(15% + 24px);
-    height: calc(100% - 88px);
+    height: calc(100% - 64px);
     padding: 0px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
 }
 
 menu ul {
@@ -103,11 +117,36 @@ menu ul {
     padding: 8px 0px 8px 24px;
 }
 
+menu button {
+    background-color: transparent;
+    border: none;
+    color: black;
+    padding: 0px 10px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: none;
+    width: calc(100% - 20px);
+}
+
+menu button:hover {
+    background-color: #FFE74C;
+}
+
 section {
     background-color: #fdfdfd;
     display: inline-block;
     padding: 8px;
     width: calc(80% - 16px);
+    height: auto;
+}
+
+#loader {
+    background-color: #fdfdfd;
+    display: inline-block;
+    padding: 8px;
+    width: calc(100%);
     height: auto;
 }
 
@@ -206,6 +245,27 @@ label {
 }
 
 .right_board ul li {
+    margin: 8px 0px 8px 0px;
+    padding: 0;
+    list-style: none;
+}
+
+#float_menu {
+    position: fixed;
+    top: 65px;
+    right:0px;
+    height: auto;
+    width: 200px;
+    padding: 8px 0px 8px 0px;
+    background-color: #f1f1f1;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#float_menu ul {
+    list-style-type: none;
+}
+
+#float_menu ul li {
     margin: 8px 0px 8px 0px;
     padding: 0;
     list-style: none;
