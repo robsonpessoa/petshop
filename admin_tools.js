@@ -45,8 +45,6 @@ $(document).ready(function(){
 			$input.appendTo($("menu"));
 		
 		}
-		
-
 	});
 	
 	$("menu").mouseleave(function(){
