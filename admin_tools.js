@@ -14,9 +14,11 @@ $(document).ready(function(){
 			
 			var $input2 = $('<input class="edit_button_menu_items_modify" type="button" value="modify" />');
 			$input2.appendTo($("menu ul li"));
+			
+			var $input3 = $('<input class="edit_button_menu_items_add" type="button" value="+" />');
+			$input3.appendTo($(".main_category"));
 		}
-		var $input = $('<input class="edit_button_menu_items_add" type="button" value="+" />');
-			$input.appendTo($("menu"));
+		
 		
 		
 	});
@@ -51,8 +53,9 @@ $(document).ready(function(){
 	
 	$("menu").mouseleave(function(){
 		$("#edit_button_menu").remove();
-		$(".edit_button_menu_items").remove();
+		$(".edit_button_menu_items_remove").remove();
 		$(".edit_button_menu_items_add").remove();
+		$(".edit_button_menu_items_modify").remove();
 
 	});
 	
@@ -186,7 +189,6 @@ $(document).ready(function(){
 		var myparent = $(e.target).parent();
 		selectedParent = myparent;
 		var cat_name = myparent.children('button');
-		alert(cat_name.text());
 		
 		$("#category_name").val(cat_name.text());
 
@@ -212,6 +214,39 @@ $(document).ready(function(){
 		selectedParent = undefined;
 		$('#admin_modify_menu_popup').remove();
 	
+	});
+	
+	//ADD NEW CATEGORY
+	$('menu').on('click','.edit_button_menu_items_add', function(e) {
+		
+		var div = document.createElement("div");
+		div.id = "admin_modify_product_popup";
+		$('#pageloader').append(div);
+		$(div).load("admin_modify_product_popup.html");
+
+		$("#contactdiv").css("display", "block");
+		
+		var myparent = $(e.target).parent();
+		selectedParent = myparent;
+		
+		var cat_type;
+		
+		if(myparent.id == 'menu_pb'){
+			cat_type = 'menu_pb';
+		}else if(myparent.id == 'menu_bs'){
+			cat_type = 'menu_bs';
+		}
+		
+		var node = document.createElement("li");
+
+        var name = document.createElement("button");
+		name.id = cat_type;
+		
+		name.appendChild(document.createTextNode(""));
+
+        node.appendChild(name);
+		
+		selectedParent = $(node);
 	});
 	
 
