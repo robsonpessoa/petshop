@@ -1,0 +1,33 @@
+<div>
+    <section class="not-full">
+        <form id="form_add_pet">
+            <div class="underline">
+                <h2>Cadastro de Animais</h2>
+            </div>
+            <div class="photo_uploader">
+                <input type="button" value="Upload">
+            </div>
+            <div style="display: inline-block; margin: 8px">
+                <label>Nome do Animal:</label> <input type="text" name="name" size="30"><br>
+                <label>Espécie:</label> <select name="specie">
+                <option value="" selected>Escolha uma espécie</option>
+                <option value="Gato">Gato</option>
+                <option value="Cachorro">Cachorro</option>
+            </select><br>
+                <label>Raça:</label> <select name="race">
+                <option value="" selected>Escolha uma raça</option>
+            </select><br>
+                <label>Nascimento:</label> <input type="date" name="birthday" size="10">
+            </div>
+            <br>
+            <input type="button" id="button_add_pet" value="Cadastrar">
+        </form>
+        </form>
+    </section>
+    <div class="right_board spaced">
+        <h1>Meus Animais</h1>
+        <ul id="my_animals"></ul>
+        Total: <span id="my_animals_size"></span>
+    </div>
+    <script type="text/javascript" src="js/views/add_pet.js"></script>
+</div>

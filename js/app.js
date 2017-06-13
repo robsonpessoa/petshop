@@ -19,13 +19,13 @@ var login = function() {
 		session.login(user, cart);
 		if(user.getRole() == "USER"){
 			$("#title_menu").load("html/signed_menu.html");
-
+        
 			var div = document.createElement("div");
 			div.id = "pet-browser";
 			$('#main_menu').append(div);
 			$('#pet-browser').load("html/pet_browser.html");
 			
-		} else if(user.getRole() == "ADMIN"){
+		}else if(user.getRole() == "ADMIN"){
 			alert("ADMIN LOGIN SUCCESSFUL");
 			$("#title_menu").load("html/signed_menu.html");
 			var div = document.createElement("div");

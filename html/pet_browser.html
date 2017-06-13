@@ -1,0 +1,9 @@
+<div>
+	<div id="pets"></div>
+	<script type="text/javascript">
+		if (session.user.pets.length == 0)
+			$("#pets").load("html/no_pet.html");
+		else
+			$("#pets").load("html/pet.html");
+	</script>
+</div>

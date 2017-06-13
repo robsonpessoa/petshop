@@ -1,0 +1,31 @@
+<div>
+    <section class="not-full">
+        <div class="underline">
+            <h2>Finalizar Compra</h2>
+        </div>
+        <form id="form_card">
+            <h3>Cadastre um novo cartão</h3>
+            <div style="display: inline-block; margin: 8px">
+                <label>Número do Cartão:</label> <input type="text" name="number" size="37"><br>
+                <label>Titular:</label> <input type="text" name="owner" size="48"><br>
+                <label>Vencimento:</label> <input type="text" name="expiration" size="10">
+                <label>Código de Segurança:</label> <input type="text" name="code" size="10">
+            </div><br>
+            <input id="button_add_card" type="button" value="Somente Cadastrar">
+            <input id="button_add_select" type="button" value="Cadastrar e Selecionar">
+        </form>
+        <div id="card_box">
+            <h3>Escolha um dos seus cartões como forma de pagamento</h3>
+            <div id="cards"></div>
+        </div>
+    </section>
+    <div class="right_board spaced">
+        <h1>Carrinho</h1>
+        <ul id="cart_items"></ul>
+        <h1 class="price">R$ <span id="total_price"></span></h1>
+        <div style="text-align: center; width: 100%;">
+            <button id="button_finish_buy" class="alert" disabled="true">Fechar Pedido</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/views/finish_buy.js"></script>
+</div>

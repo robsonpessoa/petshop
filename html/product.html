@@ -1,0 +1,36 @@
+<div id="modal_container">
+	<div class="details">
+		<div class="photo"></div>
+		<div style="padding: 8px; float: left;">
+			<h2 id="product_name">Produto</h2>
+			<span id="product_description"></span><br />
+			<h1>R$ <span id="product_price" ></span></h1><br /><br />
+		</div>
+	</div>
+	<div style="text-align: center;">
+		Quantidade: <input type="text" id="user_units" value="1" size=3/>
+		<button class="main_action">Adicionar ao <br/>Carrinho</button>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			var products = Mock.products();
+
+			var product;// = Mock.product(session.selectedProduct);
+			for (var i = 0; i < products.length; ++i)
+	    		if (products[i].id == session.selectedProduct)
+	    			product = products[i];
+
+			$("#product_name").text(product.name);
+			$("#product_description").text(product.description);
+			$("#product_price").text(product.price);
+
+			$(".main_action").on("click", function() {
+				product.user_units = $("#user_units").val();
+				session.cart.items.push(product);
+				alert("Adicionado ao carrinho");
+				View.toogleModal();
+				$(".modal").remove();
+			});
+		});
+	</script>
+</div>
