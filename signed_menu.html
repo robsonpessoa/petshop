@@ -15,11 +15,11 @@ PetShop
                 $('body').append(ndiv);              
             }
             else $('#float_menu').remove();
-            toogleModal();
+            View.toogleModal();
         });
 
 		$('#user_image').on("click", function() {
-			loadPage("edit_info.html");
+			View.loadPage("edit_info.html");
 		});
 
         $('#user_logged span').text(session.user.name);

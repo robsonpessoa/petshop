@@ -16,7 +16,7 @@
             <label>Raça:</label> <select name="race">
             <option value="" selected>Escolha uma raça</option>
         </select><br>
-            <label>Nascimento:</label> <input type="date" name="name" size="10">
+            <label>Nascimento:</label> <input type="date" name="birthday" size="10">
         </div>
         <br>
         <input type="submit" value="Salvar">
@@ -60,7 +60,7 @@
             $('[name=race]').prop("disabled", true);
 
         $('[name=race]').val(pet.race);
-        $('#pet_birthday').val(pet.birthday);
+        $('[name=birthday]').val(pet.birthday);
 
         for (var i = 0; i < pet.events.length; ++i) {
             console.log(session);

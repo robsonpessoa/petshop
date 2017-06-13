@@ -7,8 +7,8 @@
 
     <script type="text/javascript">
         if (session.user)
-            loadPage("book_service.html", "#subpageloader");
-        else loadPage("book_service_deny.html", "#subpageloader");
+            View.loadPage("book_service.html", "#subpageloader");
+        else View.loadPage("book_service_deny.html", "#subpageloader");
         $(".underline span").text(session.selectedService.name);
     </script>
 </section>

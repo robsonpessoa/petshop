@@ -29,7 +29,6 @@
                 element.appendChild(price);
 
                 $(element).on("click", function(e) {
-                    console.log(e);
                     session.selectedProduct = e.currentTarget.product;
                     if ($('.modal').length == 0) {
                         var ndiv = document.createElement("div");
@@ -38,7 +37,7 @@
                         $('body').append(ndiv);
                     }
                     else $('.modal').remove();
-                    toogleModal();
+                    View.toogleModal();
                 });
 
                 $("#items").append(element);

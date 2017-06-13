@@ -11,10 +11,10 @@
         <button class="alert finish_button">Finalizar Compra</button>
     </div>
     <script type="text/javascript">
-        updateCart();
+        View.updateCart();
         $(".finish_button").on("click", function() {
-            loadPage("finish_buy.html");
-            toogleModal();
+            View.loadPage("finish_buy.html");
+            View.toogleModal();
         });
     </script>
 </div>

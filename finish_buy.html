@@ -5,18 +5,18 @@
         </div>
         <form id="form_card">
             <h3>Cadastre um novo cartão</h3>
-            <div class="photo_uploader">
-            </div>
             <div style="display: inline-block; margin: 8px">
-                <label>Número do Cartão:</label> <input type="text" name="name" size="37"><br>
-                <label>Titular:</label> <input type="text" name="name" size="48"><br>
-                <label>Vencimento:</label> <input type="text" name="name" size="10">
-                <label>Código de Segurança:</label> <input type="text" name="name" size="10">
+                <label>Número do Cartão:</label> <input type="text" name="number" size="37"><br>
+                <label>Titular:</label> <input type="text" name="owner" size="48"><br>
+                <label>Vencimento:</label> <input type="text" name="expiration" size="10">
+                <label>Código de Segurança:</label> <input type="text" name="code" size="10">
             </div><br>
-            <input id="button_add_card" type="button" value="Cadastrar">
+            <input id="button_add_card" type="button" value="Somente Cadastrar">
+            <input id="button_add_select" type="button" value="Cadastrar e Selecionar">
         </form>
-        <div id="cards">
+        <div id="card_box">
             <h3>Escolha um dos seus cartões como forma de pagamento</h3>
+            <div id="cards"></div>
         </div>
     </section>
     <div class="right_board spaced">
@@ -26,8 +26,19 @@
     </div>
     <script type="text/javascript">
         $("document").ready(function() {
-            updateCart();
-            updateCards();
+            View.updateCart();
+            View.updateCards();
+            $("#button_add_card").on("click", function() {
+                var card_data = $("#form_card").get(0);
+                let number = card_data.elements["number"].value;
+                let owner = card_data.elements["owner"].value;
+                let expiration = card_data.elements["expiration"].value;
+                let code = card_data.elements["code"].value;
+                session.user.addCard(new Card(number, owner, expiration, code));
+                alert("Cartão cadastrado com sucesso");
+                View.updateCards();
+            });
+
         });
     </script>
 </div>

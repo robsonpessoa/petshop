@@ -262,3 +262,125 @@ class Session {
         this.selectedPet = 0;
     }
 }
+
+class View {
+    constructor() {
+
+    }
+
+    static updateCards() {
+        $("#cards").children("div").remove();
+        for (let i = 0; i < session.user.cards.length; ++i) {
+            let id = "card_" + session.user.cards[i].number;
+            let card = document.createElement("div");
+            $(card).prop("id", id);
+            card.classList.add("card");
+            $("#cards").append(card);
+            $(card).load("card.html", function() {
+                $(card).find(".card_number").text(session.user.cards[i].number);
+                $(card).find(".card_owner").text(session.user.cards[i].owner);
+                $(card).find(".card_expiration").text(session.user.cards[i].expiration);
+                $(card).on("click", function() {
+                    session.selectedCard = session.user.cards[i];
+                });
+            });
+        }
+    }
+
+    static updateCart() {
+        $("#cart_items").children().remove();
+            var total = 0;
+            for (var i=0; i < session.cart.items.length; ++i) {
+                var element = document.createElement("li");
+                total += session.cart.items[i].price;
+                element.index = i;
+
+                var photo = document.createElement("div");
+                $(photo).css("float", "left");
+                photo.classList.add("photo_uploader_adjusted");
+
+                var div = document.createElement("div");
+
+                var itemName = document.createTextNode(session.cart.items[i].name);
+                var itemPrice = document.createTextNode("R$ " + session.cart.items[i].price);
+
+                div.appendChild(photo);
+                div.appendChild(itemName);
+                div.appendChild(document.createElement("br"));
+                div.appendChild(itemPrice);
+
+                $(element).on("click", function() {
+                    session.selectedItem = element.index;
+                });
+
+                element.appendChild(div);
+
+                $("#cart_items").append(element);
+            }
+
+            $("#total_price").text(total);
+    }
+
+    static updatePetBox() {
+        $("#my_animals").children().remove();
+        for (var i=0; i < session.user.pets.length; ++i) {
+            var element = document.createElement("li");
+            element.index = i;
+
+            var photo = document.createElement("div");
+            photo.classList.add("photo_uploader_adjusted");
+            var petName = document.createTextNode(session.user.pets[i].name);
+
+            element.appendChild(photo);
+            element.appendChild(petName);
+
+            $(element).on("click", function() {
+                session.selectedPet = element.index;
+                $("#pageloader").load("edit_pet.html");
+            });
+
+            $("#my_animals").append(element);
+        }
+    }
+
+    static refresh() {
+        $('#pet-browser').load("pet_browser.html");
+    }
+
+    static loadPage(page, element) {
+        if (!element)
+            $("#pageloader").load(page);
+        else $(element).load(page);
+    }
+
+    static authorizedLoadPage(page, element) {
+        if (!session.user) {
+            session.returnPage = page;
+            View.loadPage("signin.html", element);
+        } else View.loadPage(page, element);
+    }
+
+    static createOption(name, value) {
+        var element = document.createElement("option");
+        var text = document.createTextNode(name);
+        element.value = value;
+        element.appendChild(text);
+        return element;
+    } 
+
+    static toogleModal() {
+        if ($("#overlay").length != 0) {
+            $("#overlay").remove();
+            $(".modal").remove();
+        }
+        else {
+            var overlay = document.createElement("div");
+            overlay.id = "overlay";
+            $(overlay).on("click", function() {
+                View.toogleModal();
+                $(".modal").remove();
+            });
+            $("body").append(overlay);
+        }
+    }
+}

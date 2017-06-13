@@ -14,9 +14,9 @@
 
     <script type="text/javascript">
         $("[name=my_animals]").children().remove();
-        $('[name=my_animals]').append(createOption("Selecione um animal", ""));
+        $('[name=my_animals]').append(View.createOption("Selecione um animal", ""));
         for (var i=0; i < session.user.pets.length; ++i)
-            $('[name=my_animals]').append(createOption(session.user.pets[i].name, session.user.pets[i].name));
+            $('[name=my_animals]').append(View.createOption(session.user.pets[i].name, session.user.pets[i].name));
 
         var selectedPed;
 
@@ -31,7 +31,7 @@
         $("#button_confirm").on("click", function() {
             selectedPet.bookEvent(new PetService($("[name=date]").val(), $("[name=time]").val(), session.selectedService));
             alert("Agendado com sucesso!");
-            refresh();
+            View.refresh();
         })
     </script>
 </section>

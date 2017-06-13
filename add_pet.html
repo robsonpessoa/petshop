@@ -30,7 +30,7 @@
         Total: <span id="my_animals_size"></span>
     </div>
     <script type="text/javascript">
-        updatePetBox();
+        View.updatePetBox();
 
         $("#my_animals_size").text("" + session.user.pets.length);
 
@@ -41,8 +41,8 @@
                                 pet_data.elements["race"].options[pet_data.elements["race"].selectedIndex].value,
                                 pet_data.elements["birthday"].value);
             session.user.addPet(pet);
-            updatePetBox();
-            refresh();
+            View.updatePetBox();
+            View.refresh();
         });
 
         var races = [];
@@ -62,10 +62,10 @@
                 races = Mock.dogRaces();
 
             $('[name=race]').children().remove();
-            $('[name=race]').append(createOption("Selecione uma raça", ""));  
+            $('[name=race]').append(View.createOption("Selecione uma raça", ""));  
 
             for (var i = 0; i < races.length; ++i) 
-                $('[name=race]').append(createOption(races[i], races[i]));                
+                $('[name=race]').append(View.createOption(races[i], races[i]));                
 
             $('[name=race]').prop("disabled", false);
         });
