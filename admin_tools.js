@@ -147,6 +147,12 @@ $(document).ready(function(){
 	
 	});
 	
+	$('#pageloader').on('click','#popup_menu_cancel', function(e) {
+
+		$('#admin_modify_menu_popup').remove();
+	
+	});
+	
 	//ADD NEW PRODUCT
 	$('#prod_items').on('click','.edit_button_prod_items_add', function(e) {
 		
