@@ -9,14 +9,17 @@ $(document).ready(function(){
 		console.log('you clicked me');
 		if($('.edit_button_catalogue_items').length < 1){
 		// Button does not exist
-			var $input = $('<input class="edit_button_menu_items_remove" type="button" value="-" />');
-			$input.appendTo($("menu ul li"));
+			let div = document.createElement("div");
+			div.classList.add("edit_options");
+			var $input = $('<input class="edit_button_menu_items_remove min_button small_button alert" type="button" value="-" />');
+			var $input2 = $('<input class="edit_button_menu_items_modify min_button" type="button" value="modify" />');
+
+			div.appendChild($input.get(0));
+			div.appendChild($input2.get(0));
+			$("menu ul li").append(div);			
 			
-			var $input2 = $('<input class="edit_button_menu_items_modify" type="button" value="modify" />');
-			$input2.appendTo($("menu ul li"));
-			
-			var $input3 = $('<input class="edit_button_menu_items_add" type="button" value="+" />');
-			$input3.appendTo($(".main_category"));
+			var $input3 = $('<input class="edit_button_menu_items_add small_button min_button" type="button" value="+" />');
+			$(".main_category > div.edit_options").append($input3);
 		}
 		
 		
@@ -27,7 +30,7 @@ $(document).ready(function(){
 		console.log('you clicked me');
 		if($('.edit_button_catalogue_items').length < 1){
 		// Button does not exist
-			var $input = $('<input class="edit_button_catalogue_items_remove" type="button" value="-" />');
+			var $input = $('<input class="edit_button_catalogue_items_remove small_button alert" type="button" value="-" />');
 			$input.appendTo($("#prod_items ul li"));
 			
 		}
@@ -35,7 +38,7 @@ $(document).ready(function(){
 		var $input2 = $('<input class="edit_button_catalogue_items_modify" type="button" value="modify" />');
 			$input2.appendTo($("#prod_items ul li"));
 		
-		var $input = $('<input class="edit_button_prod_items_add" type="button" value="+" />');
+		var $input = $('<input class="edit_button_prod_items_add small_button" type="button" value="+" />');
 			$input.appendTo($("#prod_items"));
 		
 	});
@@ -51,6 +54,7 @@ $(document).ready(function(){
 	
 	$("menu").mouseleave(function(){
 		$("#edit_button_menu").remove();
+		$(".edit_options").remove();
 		$(".edit_button_menu_items_remove").remove();
 		$(".edit_button_menu_items_add").remove();
 		$(".edit_button_menu_items_modify").remove();
@@ -68,6 +72,7 @@ $(document).ready(function(){
 	
 	$("#prod_items").mouseleave(function(){
 		$("#edit_button_catalogue").remove();
+		$(".edit_options").remove();
 		$(".edit_button_catalogue_items_remove").remove();
 		$(".edit_button_prod_items_add").remove();
 		$(".edit_button_catalogue_items_modify").remove();

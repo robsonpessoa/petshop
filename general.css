@@ -687,3 +687,16 @@ input.alert, button.alert {
     -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
     box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
 }
+
+.small_button {
+    min-width: 27px !important;
+}
+
+.min_button {
+    margin: 4px !important;
+}
+
+.edit_options {
+    min-height: 30px;
+    padding-right: 8px;
+}
