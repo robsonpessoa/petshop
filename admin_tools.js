@@ -67,11 +67,13 @@ $(document).ready(function(){
 	
 	$("#prod_items").mouseleave(function(){
 		$("#edit_button_catalogue").remove();
-		$(".edit_button_catalogue_items").remove();
+		$(".edit_button_catalogue_items_remove").remove();
 		$(".edit_button_prod_items_add").remove();
+		$(".edit_button_catalogue_items_modify").remove();
 
 	});
 	
+	//REMOVE PRODUCT
 	$('#prod_items').on('click','.edit_button_catalogue_items_remove', function(e){
 
 		var myparent = $(e.target).parent();
@@ -88,6 +90,8 @@ $(document).ready(function(){
 	
 	var selectedParent;//GLOBAL PARENT VARIABLE. THERES PROBABLY A BETTER APPROACH TO THIS
 	
+	
+	//UPDATE PRODUCT
 	$('#prod_items').on('click','.edit_button_catalogue_items_modify', function(e) {
 		
 		var div = document.createElement("div");
@@ -111,8 +115,17 @@ $(document).ready(function(){
 	
 	//MISSING DESCRIPTION AND IMG URL UPDATES
 	$('#pageloader').on('click','#popup_send', function(e) {
+		
 		var prod_name = $("#product_name").val();
 		var prod_price = $("#product_price").val();
+
+
+
+		//ADD NEW NODE INSTEAD OF MODIFYING IT
+		if(selectedParent.children('h2').text() == ""){
+			alert("new product");
+			$("#prod_items").append(selectedParent);
+		}
 		
 		selectedParent.children('h2').text(prod_name);
 		selectedParent.children('h3').text(prod_price);
@@ -128,7 +141,37 @@ $(document).ready(function(){
 	
 	});
 	
-	
+	//ADD NEW PRODUCT
+	$('#prod_items').on('click','.edit_button_prod_items_add', function(e) {
+		
+		var div = document.createElement("div");
+		div.id = "admin_modify_product_popup";
+		$('#pageloader').append(div);
+		$(div).load("admin_modify_product_popup.html");
+
+		$("#contactdiv").css("display", "block");
+		
+		var myparent = $(e.target).parent();
+		selectedParent = myparent;
+		var prod_name = myparent.children('h2');
+		var prod_price = myparent.children('h3');
+		
+		var node = document.createElement("li");
+
+        var name = document.createElement("h2");
+        var photo = document.createElement("div");
+        photo.classList.add('photo_uploader');
+        var price = document.createElement("h3");
+		
+		name.appendChild(document.createTextNode(""));
+        price.appendChild(document.createTextNode(""));
+
+        node.appendChild(name);
+        node.appendChild(photo);
+        node.appendChild(price);
+		
+		selectedParent = $(node);
+	});
 	
 
 });
