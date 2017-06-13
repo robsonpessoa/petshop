@@ -173,5 +173,46 @@ $(document).ready(function(){
 		selectedParent = $(node);
 	});
 	
+	//UPDATE MENU
+	$("menu").on('click','.edit_button_menu_items_modify', function(e) {
+		
+		var div = document.createElement("div");
+		div.id = "admin_modify_menu_popup";
+		$('#pageloader').append(div);
+		$(div).load("admin_modify_menu_popup.html");
+
+		$("#contactdiv").css("display", "block");
+		
+		var myparent = $(e.target).parent();
+		selectedParent = myparent;
+		var cat_name = myparent.children('button');
+		alert(cat_name.text());
+		
+		$("#category_name").val(cat_name.text());
+
+		
+	});
+	
+	//SEND BUTTON FOR MENU 
+	$('#pageloader').on('click','#popup_menu_send', function(e) {
+		
+		var cat_name = $("#category_name").val();
+
+
+
+
+		//ADD NEW NODE INSTEAD OF MODIFYING IT
+		if(selectedParent.children('button').text() == ""){
+			alert("new category");
+			$("menu").append(selectedParent);
+		}
+		
+		selectedParent.children('button').text(cat_name);
+		
+		selectedParent = undefined;
+		$('#admin_modify_menu_popup').remove();
+	
+	});
+	
 
 });
