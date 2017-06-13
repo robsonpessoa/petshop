@@ -256,16 +256,78 @@ class Session {
         this._service = value;
     }
 
+    get selectedCard() {
+        return this._selectedCard;
+    }
+
+    set selectedCard(value) {
+        this._selectedCard = value;
+        View.selectCard();
+    }
+    
+    addUserCard(card) {
+        this.user.addCard(card);
+        View.updateCards();
+    }
+
+
     login(user, cart) {
         this.user = user;
         this.cart = cart;
         this.selectedPet = 0;
+    }
+
+    commit() {
+        this.cart.items = [];
     }
 }
 
 class View {
     constructor() {
 
+    }
+
+static toogleModal() {
+        if ($("#overlay").length != 0) {
+            $("#overlay").remove();
+            $(".modal").remove();
+        }
+        else {
+            var overlay = document.createElement("div");
+            overlay.id = "overlay";
+            $(overlay).on("click", function() {
+                View.toogleModal();
+                $(".modal").remove();
+            });
+            $("body").append(overlay);
+        }
+    }
+
+    static selectCard() {
+        if (!session.selectedCard) { 
+            $(".overlay").remove();
+            $(".check").remove();
+            $(".card").css("z-index", "0");
+            $("#button_finish_buy").prop("disabled", true);
+        } else {
+            let element_id = "card_" + session.selectedCard.number;
+            let card = document.getElementById(element_id);
+            $(card).css("z-index", "99");
+            let check = document.createElement("div");
+            check.classList.add("check");
+            $(card).append(check);
+
+            let overlay = document.createElement("div");
+            overlay.classList.add("overlay");
+            $(overlay).css("height", $("#card_box").height() + "px");
+            $(overlay).css("width", $("#card_box").width() + "px");
+            // $(overlay).on("click", function() {
+            //     View.toogleModal();
+            //     $(".modal").remove();
+            // });
+            $("#card_box").append(overlay);
+            $("#button_finish_buy").prop("disabled", false);
+        }
     }
 
     static updateCards() {
@@ -280,8 +342,10 @@ class View {
                 $(card).find(".card_number").text(session.user.cards[i].number);
                 $(card).find(".card_owner").text(session.user.cards[i].owner);
                 $(card).find(".card_expiration").text(session.user.cards[i].expiration);
-                $(card).on("click", function() {
-                    session.selectedCard = session.user.cards[i];
+                $(card).on("click",     function() {
+                    if (!session.selectedCard || session.selectedCard.number != session.user.cards[i].number)
+                        session.selectedCard = session.user.cards[i];
+                    else session.selectedCard = undefined;
                 });
             });
         }
@@ -289,20 +353,20 @@ class View {
 
     static updateCart() {
         $("#cart_items").children().remove();
-            var total = 0;
-            for (var i=0; i < session.cart.items.length; ++i) {
-                var element = document.createElement("li");
+            let total = 0;
+            for (let i=0; i < session.cart.items.length; ++i) {
+                let element = document.createElement("li");
                 total += session.cart.items[i].price;
                 element.index = i;
 
-                var photo = document.createElement("div");
+                let photo = document.createElement("div");
                 $(photo).css("float", "left");
                 photo.classList.add("photo_uploader_adjusted");
 
-                var div = document.createElement("div");
+                let div = document.createElement("div");
 
-                var itemName = document.createTextNode(session.cart.items[i].name);
-                var itemPrice = document.createTextNode("R$ " + session.cart.items[i].price);
+                let itemName = document.createTextNode(session.cart.items[i].name);
+                let itemPrice = document.createTextNode("R$ " + session.cart.items[i].price);
 
                 div.appendChild(photo);
                 div.appendChild(itemName);
